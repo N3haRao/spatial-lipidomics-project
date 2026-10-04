@@ -7,8 +7,6 @@
 
 ---
 
-## TL;DR
-
 The whole tutorial is one long pipeline. I take MALDI mass spec imaging data from two mouse brain sections (one control female, one pregnant female, same coronal plane around AP 6.5), and I walk it all the way from raw m/z peaks to "which genes might explain the lipid changes in pregnancy."
 
 The headline result I'm supposed to reproduce: **myelin sphingolipids (HexCer, SM, Cer) go up in pregnant white matter**, and the gene program that best explains where lipids change is a **myelination / oligodendrocyte** program.
@@ -88,7 +86,7 @@ Three notebooks, meant to be done before the course. I can skim these since most
 - Raster the laser across the slice every **25 µm** → each grid point is a **pixel**.
 - Instrument details for both sections: Orbitrap, positive ion mode, resolving power R = 240,000 at m/z 200, 25 µm pixels, m/z 400 to 1600, DHB matrix.
 
-> ⚠️ **A pixel is not a cell.** 25 µm is bigger than a neuron body. Each pixel is a mix of cell bodies, axons, dendrites, glia, ECM. So a lipid map shows bulk chemistry of a tissue patch.
+> **A pixel is not a cell.** 25 µm is bigger than a neuron body. Each pixel is a mix of cell bodies, axons, dendrites, glia, ECM. So a lipid map shows bulk chemistry of a tissue patch.
 
 ### Brain lipids 101
 - Brain is ~50% lipid by dry weight. Lipids make membranes, synaptic vesicles, and **myelin** (why white matter is white).
@@ -217,7 +215,7 @@ The correction is just `x → F⁻¹(G(x))`:
 - MALDI is **semi-quantitative**: ionization efficiency varies wildly by molecule, so raw intensities aren't comparable *across lipids*.
 - Fix: clip at 0.5th / 99.5th percentile, rescale each lipid to [0, 1].
 
-> 📌 **Two rules to carry forward:**
+> **Two rules to carry forward:**
 > - uMAIA = same lipid comparable **across sections**. min01 = different lipids comparable **to each other**. Both needed.
 > - **Differential testing always runs on uMAIA-normalized, non-Harmonized data.**
 
@@ -296,7 +294,7 @@ Before NMF, look at modules: `np.corrcoef`, distance `1 − |r|`, optimal-leaf o
 - Works on `X_nmf`, batch = **SectionID**. Iterates soft-clustering + nudging each batch toward cluster centers. Much more aggressive than uMAIA.
 - → `obsm["X_harmony"]`
 
-> 🚨 **Read twice:** Harmony output is **only for clustering and label transfer.** Never for the differential test. With two sections, batch and condition are perfectly confounded, so Harmony would happily erase the pregnancy effect.
+> Harmony output is **only for clustering and label transfer.** Never for the differential test. With two sections, batch and condition are perfectly confounded, so Harmony would happily erase the pregnancy effect.
 
 ### Bonus: a first neural net
 - `ml.predict_position`: StandardScaler + `MLPRegressor(256,128,64)`, predict in-plane CCF (`yccf`, `zccf`) from lipids alone, 25% held out.
@@ -491,41 +489,3 @@ The scaffold comes off. I pick a question, tools, run it, defend it.
 - **MERFISH**: multiplexed error-robust FISH (spatial transcriptomics)
 - **SHAP**: Shapley-value feature attribution
 - **GO**: gene ontology
-
----
-
-## Self-check questions (can I answer these without peeking?)
-
-- [ ] What does one number in `.X` physically mean?
-- [ ] Parse `HexCer 42:2;O2` into class, carbons, double bonds, oxygens.
-- [ ] Why does one lipid appear at several m/z?
-- [ ] What's 5 ppm at m/z 800 in Da? (0.004)
-- [ ] Why was m/z 518.2643 called LPC 15:1 but is probably LPE 18:1?
-- [ ] In uMAIA, which mode is the anchor and which one drifts?
-- [ ] Write out the uMAIA foreground mean and name each term.
-- [ ] Why is `covariate_vector=None`?
-- [ ] Why is 0.4 a strength threshold and not a significance threshold for Moran's I?
-- [ ] Why NMF over PCA here?
-- [ ] Why can't I run the differential test on `X_harmony`?
-- [ ] What does the Leiden `resolution` knob do?
-- [ ] Why use reciprocal enrichment instead of a plain crosstab?
-- [ ] Why is the whole-section myelination change ~0 but the white-matter one clearly positive?
-- [ ] Why compress 8460 genes into 20 programs before XGBoost?
-- [ ] In the NB08 permutation null, why shuffle the lipid changes and not the genes?
-
----
-
-## My to-do to finish this
-
-- [ ] Envs set up (`cajal-lipidomics` + `cajal-umaia`), both `ok` checks pass
-- [ ] Data bundle fetched
-- [ ] 00 intro skimmed (mostly the stats notebook)
-- [ ] NB01 → `01_raw.h5ad`
-- [ ] NB02 → `02_annotated.h5ad`
-- [ ] NB03 (switch kernel!) → `03_normalized.h5ad`
-- [ ] NB04
-- [ ] NB05 → `05_embedded.h5ad`
-- [ ] NB06 → `06_clustered.h5ad`
-- [ ] NB07
-- [ ] NB08
-- [ ] NB09 plan filled + one analysis done
