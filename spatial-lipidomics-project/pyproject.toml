@@ -1,0 +1,31 @@
+# pyproject.toml: tells pip how to install my little package (src/lipid_project/).
+#
+# Why bother making it installable? So every notebook can just `from lipid_project import paths`
+# no matter which folder it's in, without sys.path hacks at the top of each notebook.
+# setup.sh installs it in "editable" mode (pip install -e .), which means pip links to my
+# source folder instead of copying it, so edits show up immediately.
+
+# --- how to build the package ------------------------------------------------------------
+# setuptools is the standard, boring-in-a-good-way build tool. pip reads this section first
+# to know what it needs in order to install the rest.
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# --- what the package is ---------------------------------------------------------------------
+[project]
+name = "lipid-project"        # the pip name (dashes). In Python I import it as lipid_project (underscore).
+version = "0.1.0"
+description = "My helpers for working through the CAJAL spatial lipidomics tutorial."
+requires-python = ">=3.10"    # both course envs use Python 3.11, so this is satisfied
+
+# No dependencies, on purpose. paths.py only uses the standard library, and keeping this empty
+# means installing it can never drag in or upgrade numpy/pandas. That matters for the
+# cajal-umaia env, whose older pinned stack is fragile.
+dependencies = []
+
+# --- where the code is ----------------------------------------------------------------------------
+# My code lives under src/ (the "src layout"). This tells setuptools to look there and pick up
+# every folder that has an __init__.py, which right now is just src/lipid_project/.
+[tool.setuptools.packages.find]
+where = ["src"]

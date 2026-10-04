@@ -1,0 +1,24 @@
+# ---- data (too big for GitHub) ----
+data/*
+!data/.gitkeep
+*.h5ad
+*.parquet
+*.zarr/
+*.npy
+*.sdf
+*.obo
+gene2go*
+
+# ---- external code cloned during the tutorial ----
+external/
+
+# ---- Python / Jupyter clutter ----
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.egg-info/
+
+# ---- OS / editor clutter ----
+.DS_Store
+.vscode/
+.idea/
