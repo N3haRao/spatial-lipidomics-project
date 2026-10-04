@@ -164,7 +164,7 @@ Three notebooks, meant to be done before the course. I can skim these since most
 
 > Runs on the **`cajal-umaia`** kernel, JAX pinned to CPU.
 
-> ⚠️ **Big caveat the notebook flags itself:** batch correction with 1 control vs 1 pregnant section is ill-defined. Any shift could be technical *or* biological (pregnancy, or just individual differences). Properly this is done at atlas scale (e.g. 6 sections x 4 animals x 2 conditions). It's an "intentional mistake" for teaching.
+> **Big caveat the notebook flags itself:** batch correction with 1 control vs 1 pregnant section is ill-defined. Any shift could be technical *or* biological (pregnancy, or just individual differences). Properly this is done at atlas scale (e.g. 6 sections x 4 animals x 2 conditions). It's an "intentional mistake" for teaching.
 
 ### Batch effect, what drifts between acquisitions
 Matrix crystallization, laser energy, detector gain / ionization efficiency, sample handling. None of it is biology, all of it shifts intensity roughly section-wide.
