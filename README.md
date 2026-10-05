@@ -104,7 +104,3 @@ The data is too big for GitHub, so none of it is committed.
 - uMAIA, *Nature Methods* (2025)
 - Lipid Brain Atlas explorer: <https://lbae-v2.epfl.ch/>
 - Allen Mouse Brain Common Coordinate Framework (CCFv3)
-
-## About me
-
-I'm Neha, a computational biologist. More about me at [n3harao.github.io/Neha-Rao-Portfolio](https://n3harao.github.io/Neha-Rao-Portfolio).
