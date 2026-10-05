@@ -2,8 +2,7 @@
 
 My working repository for learning spatial metabolomics, specifically MALDI mass spectrometry imaging (MALDI-MSI) of brain lipids.
 
-In this repo I'm working through the **CAJAL Neuromics spatial metabolomics tutorial** from the La Manno lab at EPFL:
-👉 [lamanno-epfl/lipidomics_tutorial_cajalcourse](https://github.com/lamanno-epfl/lipidomics_tutorial_cajalcourse)
+In this repo I'm working through the **CAJAL Neuromics spatial metabolomics tutorial** from the La Manno lab at EPFL: [lamanno-epfl/lipidomics_tutorial_cajalcourse](https://github.com/lamanno-epfl/lipidomics_tutorial_cajalcourse)
 
 The tutorial follows the [Lipid Brain Atlas](https://www.biorxiv.org/content/10.1101/2025.10.13.682018v1) (Fusar Bassini et al., 2025) and compares a coronal section from a control female mouse brain with one from a pregnant female. The question at the end: **which brain lipids change during pregnancy, where, and which genes might explain it?**
 
@@ -21,23 +20,6 @@ All credit for the tutorial design, the `cajal_lipidomics` helper package, and t
 - Clustering pixels into lipid territories ("lipizones") with Leiden and [EUCLID](https://github.com/lamanno-epfl/EUCLID), and transferring labels from control to pregnant
 - Differential lipid testing (Wilcoxon rank-sum + Benjamini-Hochberg) and composite scores like myelination
 - Linking lipid changes to gene expression using Allen MERFISH, XGBoost, SHAP, and gene ontology
-
-## Progress
-
-| # | Topic | Status |
-|---|---|---|
-| 00 | Intro: tooling, Python, math & stats | ⬜ |
-| 01 | Mass spectra and the raw data | ⬜ |
-| 02 | From m/z peaks to lipid names | ⬜ |
-| 03 | Normalization with uMAIA | ⬜ |
-| 04 | Anatomy: registration and the Allen atlas | ⬜ |
-| 05 | Embedding: Moran's I, NMF, t-SNE, Harmony | ⬜ |
-| 06 | Clustering and label transfer | ⬜ |
-| 07 | Clustering from scratch + pregnancy changes | ⬜ |
-| 08 | Which genes explain the lipid changes | ⬜ |
-| 09 | My own analysis | ⬜ |
-
-(⬜ not started · 🟨 in progress · ✅ done)
 
 ## Repository structure
 
@@ -74,7 +56,3 @@ I'm following the tutorial's own [setup guide](https://github.com/lamanno-epfl/l
 - uMAIA, *Nature Methods* (2025)
 - Lipid Brain Atlas explorer: <https://lbae-v2.epfl.ch/>
 - Allen Mouse Brain Common Coordinate Framework (CCFv3)
-
-## About me
-
-I'm Neha, a computational biologist. More about me at [n3harao.github.io/Neha-Rao-Portfolio](https://n3harao.github.io/Neha-Rao-Portfolio).
